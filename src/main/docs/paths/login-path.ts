@@ -3,12 +3,10 @@ export const loginPath = {
     tags: ['Login'],
     summary: 'User authentication',
     requestBody: {
-      200: {
-        content: {
-          'application/json': {
-            schema: {
-              $ref: '#/schemas/loginParams'
-            }
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/schemas/loginParams'
           }
         }
       }
