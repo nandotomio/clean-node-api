@@ -33,7 +33,7 @@ describe('DbSaveSurveyResult UseCase', () => {
     const { sut, saveSurveyResultRepositorySpy } = makeSut()
     const saveSurveyResultParams = mockSaveSurveyResultParams()
     await sut.save(saveSurveyResultParams)
-    expect(saveSurveyResultRepositorySpy.saveSurveyResultParams).toEqual(saveSurveyResultParams)
+    expect(saveSurveyResultRepositorySpy.result).toEqual(saveSurveyResultParams)
   })
 
   test('should throw if SaveSurveyResultRepository throws', async () => {
@@ -60,6 +60,6 @@ describe('DbSaveSurveyResult UseCase', () => {
   test('should return a survey result on success', async () => {
     const { sut, loadSurveyResultRepositorySpy } = makeSut()
     const surveyResult = await sut.save(mockSaveSurveyResultParams())
-    expect(surveyResult).toEqual(loadSurveyResultRepositorySpy.surveyResultModel)
+    expect(surveyResult).toEqual(loadSurveyResultRepositorySpy.result)
   })
 })
