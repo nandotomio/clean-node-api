@@ -40,7 +40,7 @@ describe('Auth Middleware', () => {
 
   test('should return 403 if LoadAccountByToken returns null', async () => {
     const { sut, loadAccountByTokenSpy } = makeSut()
-    loadAccountByTokenSpy.accountModel = null
+    loadAccountByTokenSpy.result = null
     const request = await sut.handle(mockRequest())
     expect(request).toEqual(forbidden(new AccessDeniedError()))
   })
@@ -49,7 +49,7 @@ describe('Auth Middleware', () => {
     const { sut, loadAccountByTokenSpy } = makeSut()
     const request = await sut.handle(mockRequest())
     expect(request).toEqual(ok({
-      accountId: loadAccountByTokenSpy.accountModel.id
+      accountId: loadAccountByTokenSpy.result.id
     }))
   })
 
