@@ -1,17 +1,17 @@
-import { Hasher, AddAccountRepository, LoadAccountByEmailRepository } from '@/data/protocols'
+import { Hasher, AddAccountRepository, CheckAccountByEmailRepository } from '@/data/protocols'
 import { AddAccount } from '@/domain/usecases'
 
 export class DbAddAccount implements AddAccount {
   constructor (
     private readonly hasher: Hasher,
     private readonly addAccountRepository: AddAccountRepository,
-    private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
+    private readonly checkAccountByEmailRepository: CheckAccountByEmailRepository
   ) {}
 
   async add (data: AddAccount.Params): Promise<AddAccount.Result> {
-    const account = await this.loadAccountByEmailRepository.loadByEmail(data.email)
+    const exists = await this.checkAccountByEmailRepository.checkByEmail(data.email)
     let isValid: boolean = false
-    if (!account) {
+    if (!exists) {
       const hashedPassword = await this.hasher.hash(data.password)
       isValid = await this.addAccountRepository.add({
         ...data,
