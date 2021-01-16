@@ -37,31 +37,56 @@ describe('Login GraphQL', () => {
     test('Should return an Account on valid credentials', async () => {
       const password = await hash('123', 12)
       await accountCollection.insertOne({
-        name: 'Rodrigo',
-        email: 'rodrigo.manguinho@gmail.com',
+        name: 'Fernando',
+        email: 'nandotomi@gmail.com',
         password
       })
       const { query } = createTestClient({ apolloServer })
       const res: any = await query(loginQuery, {
         variables: {
-          email: 'rodrigo.manguinho@gmail.com',
+          email: 'nandotomi@gmail.com',
           password: '123'
         }
       })
       expect(res.data.login.accessToken).toBeTruthy()
-      expect(res.data.login.name).toBe('Rodrigo')
+      expect(res.data.login.name).toBe('Fernando')
     })
 
     test('Should return an UnauthorizedError on invalid credentials', async () => {
       const { query } = createTestClient({ apolloServer })
       const res: any = await query(loginQuery, {
         variables: {
-          email: 'rodrigo.manguinho@gmail.com',
+          email: 'nandotomi@gmail.com',
           password: '123'
         }
       })
       expect(res.data).toBeFalsy()
       expect(res.errors[0].message).toBe('Unauthorized')
+    })
+  })
+
+  describe('SignUp Mutation', () => {
+    const signUpMutation = gql`
+      mutation signUp ($name: String!, $email: String!, $password: String!, $passwordConfirmation: String!) {
+        signUp (name: $name, email: $email, password: $password, passwordConfirmation: $passwordConfirmation) {
+          accessToken
+          name
+        }
+      }
+    `
+
+    test('Should return an Account on valid data', async () => {
+      const { mutate } = createTestClient({ apolloServer })
+      const res: any = await mutate(signUpMutation, {
+        variables: {
+          name: 'Fernando',
+          email: 'nandotomi@gmail.com',
+          password: '123',
+          passwordConfirmation: '123'
+        }
+      })
+      expect(res.data.signUp.accessToken).toBeTruthy()
+      expect(res.data.signUp.name).toBe('Fernando')
     })
   })
 })
