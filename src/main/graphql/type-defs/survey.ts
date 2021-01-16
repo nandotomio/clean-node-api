@@ -4,16 +4,14 @@ export default gql`
   extend type Query {
     surveys: [Survey!]! @auth
   }
-
   type Survey {
     id: ID!
     question: String!
-    answers: [SurveyAnswers!]!
+    answers: [SurveyAnswer!]!
     date: DateTime!
     didAnswer: Boolean
   }
-
-  type SurveyAnswers {
+  type SurveyAnswer {
     image: String
     answer: String!
   }

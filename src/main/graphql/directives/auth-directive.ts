@@ -1,6 +1,7 @@
 import { makeAuthMiddleware } from '@/main/factories'
-import { ForbiddenError, SchemaDirectiveVisitor } from 'apollo-server-express'
-import { defaultFieldResolver, GraphQLField } from 'graphql'
+
+import { SchemaDirectiveVisitor, ForbiddenError } from 'apollo-server-express'
+import { GraphQLField, defaultFieldResolver } from 'graphql'
 
 export class AuthDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition (field: GraphQLField<any, any>): any {
