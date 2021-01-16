@@ -9,7 +9,7 @@ export const adaptResolver = async (controller: Controller, args?: any, context?
   }
   const httpResponse = await controller.handle(request)
   switch (httpResponse.statusCode) {
-    case 200:
+    case 200: return httpResponse.body
     case 204: return httpResponse.body
     case 400: throw new UserInputError(httpResponse.body.message)
     case 401: throw new AuthenticationError(httpResponse.body.message)
