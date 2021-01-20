@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/nandotomio/clean-node-api.svg?branch=master)](https://travis-ci.org/nandotomio/clean-node-api)
 [![Coverage Status](https://coveralls.io/repos/github/nandotomio/clean-node-api/badge.svg?branch=master)](https://coveralls.io/github/nandotomio/clean-node-api?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/nandotomio/clean-node-api/badge.svg)](https://snyk.io/test/github/nandotomio/clean-node-api)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
 
