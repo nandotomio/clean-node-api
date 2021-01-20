@@ -22,7 +22,7 @@
   },
   "keywords": [],
   "author": "Fernando Tomio",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
     "@types/bcrypt": "^3.0.0",
