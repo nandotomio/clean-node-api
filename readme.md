@@ -136,7 +136,7 @@ The purpose of the training is to show how to create an API with a well-defined 
 
 > ## Typescript features
 
-* Advanced POO
+* Advanced OOP
 * Interface
 * TypeAlias
 * Namespace
